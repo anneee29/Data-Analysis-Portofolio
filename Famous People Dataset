@@ -1,0 +1,63 @@
+--Create Famous People Database
+# In this SQL, I'm querying a database with multiple tables in it to query famous people data, their works, and partners. 
+
+CREATE TABLE famous_people (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER);
+    
+INSERT INTO famous_people (fullname, age) VALUES ("David Beckham", "48");
+INSERT INTO famous_people (fullname, age) VALUES ("Victoria Beckham", "49");
+INSERT INTO famous_people (fullname, age) VALUES ("Bill Gates", "67");
+INSERT INTO famous_people (fullname, age) VALUES ("Jim Carrey", "61");
+INSERT INTO famous_people (fullname, age) VALUES ("Kim Kardashian", "42");
+INSERT INTO famous_people (fullname, age) VALUES ("Morgan Freeman", "86");
+INSERT INTO famous_people (fullname, age) VALUES ("Johnny Depp", "60");
+INSERT INTO famous_people (fullname, age) VALUES ("Leonardo DiCaprio", "48");
+INSERT INTO famous_people (fullname, age) VALUES ("Taylor Swift", "33");
+INSERT INTO famous_people (fullname, age) VALUES ("Will Smith", "55");
+INSERT INTO famous_people (fullname, age) VALUES ("Jada Pinkett Smith", "52");
+
+
+
+CREATE table works (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    occupation TEXT,
+    masterpiece TEXT);
+    
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (1, "footballer",NULL);
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (2, "designer",NULL);
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (3, "businessman","Microsoft");
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (4, "actor","The Truman Show");
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (5, "influencer",NULL);
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (6, "actor","The Shawshank Redemption");
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (7, "actor","Pirates of the Caribbean");
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (8, "singer","You Belong with Me");
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (9, "actor","Men in Black");
+INSERT INTO works (person_id, occupation, masterpiece) VALUES (10, "actress","Red Table Talk");
+
+CREATE table partner (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER);
+
+INSERT INTO partner (person1_id, person2_id)
+    VALUES (1, 2);
+INSERT INTO partner (person1_id, person2_id)
+    VALUES (9, 10);
+
+# This lists the name and occupation of every famous people, with actor as their occipation. 
+SELECT f.fullname, w.masterpiece
+FROM famous_people f
+LEFT OUTER JOIN works w
+ON f.id= w.person_id
+WHERE w.occupation = "actor" OR "actress"
+
+# Showing names of each pair of married couples, based on the data in the partners table.
+SELECT a.fullname as Name, b.fullname as Spouse
+FROM partner 
+JOIN famous_people a 
+ON a.id = partner.person1_id 
+JOIN famous_people b 
+ON b.id = partner.person2_id; 
