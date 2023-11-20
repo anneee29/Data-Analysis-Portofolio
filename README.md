@@ -1,25 +1,26 @@
 # About Me
 Welcome to my GitHub portfolio! I'm Carrieann Caroline, a passionate undergraduate data enthusiast with a keen interest in leveraging data to derive meaningful insights. My journey involves a blend of SQL proficiency and the art of visualization using Tableau.
 
-# SQL Projects
-Project 1: [Project Name]
+## SQL Projects
+### Project 1: [Netflix Dataset]
+Description: This project shows insights on TV Shows and Movies content hosted on Netflix. The project was written using the PostgreSQL dialect and utilized data from two Netflix datasets.
+Skills: ORDER BY Clause, JOIN Operations, Subqueries, Aggregate Functions
 
-Description: Briefly describe the project, its objectives, and the problem it addresses.
-Skills: SQL, [Other relevant skills]
-Project 2: [Project Name]
+### Project 2: [Spotify Data]
+Description: This project utilizes Spotify data from Kaggle, focuses on creating a structured database, performing data analytics using SQL, and gaining insights into music trends.
+Skills: CTE, HAVING Clause, ORDER BY Clause, LIMIT 
 
-Description: Provide a short overview of the project, the dataset used, and key findings.
-Skills: SQL, [Other relevant skills]
-Project 3: [Project Name]
+Project 3: [Bike Lane Data]
+Description: This project utilizes Bike Lane data, focuses on gaining insight on safety ratings and classifying lanes for recommended actions.
+Skills: Window Function, CTE, CASE Statement
 
-Description: Summarize the project's purpose and the impact of your SQL queries or data manipulations.
-Skills: SQL, [Other relevant skills]
-Tableau Dashboards
+
+## Tableau Dashboards
 Explore my Tableau dashboards to witness data come to life:
 
-Dashboard 1: [Dashboard Name]
+### Dashboard 1: [World Happiness Report Dashboard]
 
-Link: [Insert Link]
+Link: [View Dashboard](https://public.tableau.com/app/profile/carrieann.caroline/viz/WorldHappinessReportDashboard_17004615010980/Dashboard1?publish=yes)
 Description: Highlight the key insights and visualizations presented in this dashboard.
 Dashboard 2: [Dashboard Name]
 
