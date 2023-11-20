@@ -1,4 +1,5 @@
-#This analysis utilizes Chinook Database to make SQL analytics queries.
+# The Chinook Dataset represents a digital media store and includes tables for artists, albums, media tracks, invoices, and customers.
+# This analysis utilizes Chinook Database to make SQL analytics queries.
 
 # Show Customers (their full names, customer ID, and country) who are not in the US. 
 SELECT CustomerID, FirstName, LastName, Country
