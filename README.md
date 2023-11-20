@@ -10,7 +10,7 @@ Skills: ORDER BY Clause, JOIN Operations, Subqueries, Aggregate Functions
 Description: This project utilizes Spotify data from Kaggle, focuses on creating a structured database, performing data analytics using SQL, and gaining insights into music trends.
 Skills: CTE, HAVING Clause, ORDER BY Clause, LIMIT 
 
-Project 3: [Bike Lane Data]
+### Project 3: [Bike Lane Data](SQL/Bike Lane Data)
 Description: This project utilizes Bike Lane data, focuses on gaining insight on safety ratings and classifying lanes for recommended actions.
 Skills: Window Function, CTE, CASE Statement
 
