@@ -1,0 +1,98 @@
+# The Chinook Dataset represents a digital media store and includes tables for artists, albums, media tracks, invoices, and customers.
+# This analysis utilizes Chinook Database to make SQL analytics queries.
+
+# Show Customers (their full names, customer ID, and country) who are not in the US. 
+SELECT CustomerID, FirstName, LastName, Country
+FROM customers 
+WHERE country <> 'USA'
+;
+
+# Invoices of customers who are from Brazil, showing the customer's full name, Invoice ID, Date of the invoice, and billing country.
+SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.BillingCountry, inv.InvoiceDate
+FROM customers cust
+JOIN invoices inv
+ON inv.CustomerId = cust.CustomerId 
+WHERE cust.country = 'Brazil'
+;
+
+# A unique/distinct list of billing countries from the Invoice table.
+SELECT DISTINCT BillingCountry
+FROM Invoices
+;
+
+# Showing the invoices associated with each sales agent, including the Sales Agent's full name.
+SELECT cust.FirstName, cust.LastName, inv.InvoiceId
+FROM customers cust
+JOIN invoices inv 
+    ON inv.CustomerId = cust.CustomerId 
+JOIN employees emp
+    ON emp.employeeId = cust.supportRepId
+;
+
+# Showing the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
+SELECT inv.total, cust.FirstName as CustomerFirstName, cust.LastName as CustomerLastName, cust.country, emp.FirstName as EmployeeFirstName, emp.LastName as EmployeeLastName
+FROM customers cust
+JOIN invoices inv 
+    ON inv.CustomerId = cust.CustomerId 
+JOIN employees emp
+    ON emp.employeeId = cust.supportRepId
+;
+
+# How many Invoices were there in 2009?
+SELECT COUNT(*)
+FROM Invoices 
+WHERE InvoiceDate like '2009%'
+;
+
+# What are the total sales for 2009?
+SELECT SUM(Total)
+FROM Invoices 
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+;
+
+# Showing the purchased track name AND artist name with each invoice line ID.
+SELECT t.Name as Track, ar.Name as Artist , i.InvoiceLineId
+FROM invoice_items i
+JOIN tracks t
+    ON t.TrackId = i.TrackId
+JOIN albums al
+    ON al.AlbumId = t.AlbumId
+JOIN artists ar
+    ON ar.ArtistId = al.ArtistId
+;
+
+# Showing all the Tracks, and include the Album name, Media type, and Genre
+SELECT t.Name as Track, al.Title as Album, med.Name as MediaType, g.Name as Genre
+FROM tracks t
+JOIN albums al
+    ON al.AlbumId = t.AlbumId
+JOIN media_types med
+    ON med.MediaTypeId = t.MediaTypeId
+JOIN genres g
+    ON g.GenreId = t.GenreId
+;
+
+# The total sales made by each sales agent
+SELECT ROUND(SUM(inv.total),2) as TotalSales, emp.FirstName as EmployeeFirstName, emp.LastName as EmployeeLastName
+FROM invoices inv
+JOIN customers cust
+    ON cust.CustomerId = inv.CustomerId 
+JOIN employees emp
+    ON emp.employeeId = cust.supportRepId
+WHERE emp.Title = 'Sales Support Agent'
+GROUP BY emp.FirstName
+;
+
+# Which sales agent made the most dollars in sales in 2009?
+SELECT ROUND(SUM(inv.total),2) as TotalSales, emp.FirstName as EmployeeFirstName, emp.LastName as EmployeeLastName
+FROM invoices inv
+JOIN customers cust
+    ON cust.CustomerId = inv.CustomerId 
+JOIN employees emp
+    ON emp.employeeId = cust.supportRepId
+WHERE emp.Title = 'Sales Support Agent' 
+    AND InvoiceDate like '2009%'
+GROUP BY emp.FirstName
+ORDER BY SUM(inv.total) DESC
+LIMIT 1
+;
